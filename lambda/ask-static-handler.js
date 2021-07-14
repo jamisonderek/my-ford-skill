@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+
 const Alexa = require('ask-sdk-core');
 
 const launchRequestHandler = {

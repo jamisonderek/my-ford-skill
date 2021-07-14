@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable arrow-parens */
-const Alexa = require('ask-sdk-core');
 
+const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
 
 const checkStatus = (res, expectedStatusCode = 200) => {

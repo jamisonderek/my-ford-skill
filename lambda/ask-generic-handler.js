@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+
 // This code is based on a sample that demonstrates handling intents from an Alexa skill using the
 // Alexa Skills Kit SDK (v2). Please visit https://alexa.design/cookbook for additional examples on
 // implementing slots, dialog management, session persistence, api calls, and more.
