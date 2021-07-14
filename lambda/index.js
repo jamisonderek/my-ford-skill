@@ -5,7 +5,7 @@
 // implementing slots, dialog management, session persistence, api calls, and more.
 
 const Alexa = require('ask-sdk-core');
-const { Fetch } = require('./fetch');
+const fetch = require('node-fetch');
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -28,12 +28,12 @@ const StartVehicleIntentHandler = {
   async handle(handlerInput) {
     let speakOutput;
     try {
-      const answer = await Fetch('https://postman-echo.com/get?msg=Hello+world!');
-      if (answer.statusCode === 200) {
-        const json = JSON.parse(answer.body);
-        speakOutput = `starting vehicle says ${json.args.msg}`;
+      const answer = await fetch('https://postman-echo.com/get?msg=Hello+world!');
+      if (answer.status === 200) {
+        const json = await answer.json();
+        speakOutput = `starting vehicle says message ${json.args.msg}`;
       } else {
-        speakOutput = 'Error processing starting vehicle command.';
+        speakOutput = `Error processing starting vehicle command. ${answer && answer.status} status code.`;
       }
     } catch (e) {
       speakOutput = `Error ${e}`;
