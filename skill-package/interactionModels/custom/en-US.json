@@ -1,0 +1,117 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "my ford",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "StartVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "start car",
+                        "start vehicle",
+                        "turn on the truck",
+                        "turn on the Ford",
+                        "cool the car",
+                        "warm the car"
+                    ]
+                },
+                {
+                    "name": "LockVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "lock car",
+                        "lock vehicle",
+                        "lock the truck",
+                        "lock the doors on my Ford"
+                    ]
+                },
+                {
+                    "name": "UnlockVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "unlock car",
+                        "unlock vehicle",
+                        "open the truck doors",
+                        "unlock the doors on my Ford"
+                    ]
+                },
+                {
+                    "name": "ChargeVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "start charging the vehicle",
+                        "charge the truck now",
+                        "begin charging",
+                        "charge car"
+                    ]
+                },
+                {
+                    "name": "WhereVehicleIntent",
+                    "slots": [],
+                    "samples": [
+                        "locate car",
+                        "where is the truck",
+                        "find the vehicle"
+                    ]
+                },
+                {
+                    "name": "CheckFuelIntent",
+                    "slots": [],
+                    "samples": [
+                        "fuel remaining",
+                        "is the tank empty",
+                        "distance to empty",
+                        "how much gas do I have",
+                        "do I need gas"
+                    ]
+                },
+                {
+                    "name": "CheckPlugIntent",
+                    "slots": [],
+                    "samples": [
+                        "is the car plugged in",
+                        "is the cord connected",
+                        "is the charger in"
+                    ]
+                },
+                {
+                    "name": "WhenChargingIntent",
+                    "slots": [],
+                    "samples": [
+                        "when is the charge scheduled for",
+                        "next charge time",
+                        "when will my car be charged",
+                        "are you charging the car tonight",
+                        "is a charge scheduled for tonight"
+                    ]
+                },
+                {
+                    "name": "GoodNightIntent",
+                    "slots": [],
+                    "samples": [
+                        "good night",
+                        "check vehicle"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+  }
+  
