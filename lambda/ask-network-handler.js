@@ -49,7 +49,7 @@ const getIntent = (intent, reprompt = false) => {
       return fetch(url(intent))
         .then(checkStatus)
         .then(toJson)
-        .then(json => `${intent} handler says the message ${json.args.msg}`)
+        .then(json => `${intent} handler says the message ${json.msg}`)
         .then(output => handlerInput.responseBuilder.speak(output))
         .then(response => (reprompt === true ? response.reprompt(message.anythingElse) : response))
         .then(response => response.getResponse())
