@@ -20,29 +20,29 @@ const LaunchRequestHandler = {
   },
 };
 
+const CheckStatus = (res, expectedStatusCode) => {
+  if (res.status !== expectedStatusCode) {
+    throw new Error(`Failed processing starting vehicle command. Unexpected ${res && res.status} status code.`);
+  }
+  return res;
+};
+
+const ToJson = (res) => res.json();
+const messageAnythingElse = 'Is there anything else I can help with?';
+
 const StartVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'StartVehicleIntent';
   },
-  async handle(handlerInput) {
-    let speakOutput;
-    try {
-      const answer = await fetch('https://postman-echo.com/get?msg=Hello+world!');
-      if (answer.status === 200) {
-        const json = await answer.json();
-        speakOutput = `starting vehicle says message ${json.args.msg}`;
-      } else {
-        speakOutput = `Error processing starting vehicle command. ${answer && answer.status} status code.`;
-      }
-    } catch (e) {
-      speakOutput = `Error ${e}`;
-    }
-
-    return handlerInput.responseBuilder
-      .speak(speakOutput)
-      // .reprompt('add a reprompt if you want to keep the session open for the user to respond')
-      .getResponse();
+  handle(handlerInput) {
+    return fetch('https://postman-echo.com/get?msg=Hello+world!')
+      .then((res) => CheckStatus(res, 200))
+      .then(ToJson)
+      .then((json) => `starting vehicle got 200 and says the message ${json.args.msg}`)
+      .then((output) => handlerInput.responseBuilder.speak(output))
+      .then((response) => response.reprompt(messageAnythingElse).getResponse())
+      .catch((err) => handlerInput.responseBuilder.speak(`Error ${err}`).getResponse());
   },
 };
 
