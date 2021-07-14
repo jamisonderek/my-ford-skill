@@ -6,6 +6,7 @@
 
 const Alexa = require('ask-sdk-core');
 
+// The cancel and stop intent is used to tell the user goodbye and exit out of the Alexa skill.
 const cancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
@@ -20,6 +21,7 @@ const cancelAndStopIntentHandler = {
   },
 };
 
+// The session ended request is used for cleanup.
 const sessionEndedRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
