@@ -5,11 +5,15 @@
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
-                    "samples": []
+                    "samples": [
+                        "no"
+                    ]
                 },
                 {
                     "name": "AMAZON.HelpIntent",
-                    "samples": []
+                    "samples": [
+                        "yes"
+                    ]
                 },
                 {
                     "name": "AMAZON.StopIntent",
