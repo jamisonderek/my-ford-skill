@@ -169,7 +169,7 @@ const helpIntentHandler = {
     const speakOutput = 'I can lock, unlock, start and charge your vehicle. '
         + 'I can also check fuel level, see current location, check EV plug, '
         + 'and determine when the next charge is. '
-        + 'My good night route makes sure you make it to your meeting.';
+        + 'My good night routine makes sure you make it to your meeting.';
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
