@@ -17,18 +17,7 @@ exports.handler = Alexa.SkillBuilders.custom()
     // Welcome (App launch without command)
     staticHandler.launchRequestHandler,
 
-    // Vehicle state changes
-    networkHandler.startVehicleIntentHandler,
-    networkHandler.lockVehicleIntentHandler,
-    networkHandler.unlockVehicleIntentHandler,
-    networkHandler.chargeVehicleIntentHandler,
-
-    // Vehicle information
-    networkHandler.whereVehicleIntentHandler,
-    networkHandler.checkFuelIntentHandler,
-    networkHandler.checkPlugIntentHandler,
-    networkHandler.whenChargingIntentHandler,
-    networkHandler.goodNightIntentHandler,
+    ...networkHandler,
 
     // Help, Cancel and Session management.
     staticHandler.helpIntentHandler,
