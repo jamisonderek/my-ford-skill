@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable arrow-parens */
 
 // This code is based on a sample that demonstrates handling intents from an Alexa skill using the
 // Alexa Skills Kit SDK (v2). Please visit https://alexa.design/cookbook for additional examples on
@@ -7,7 +8,18 @@
 const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
 
-const LaunchRequestHandler = {
+const checkStatus = (res, expectedStatusCode = 200) => {
+  if (res.status !== expectedStatusCode) {
+    throw new Error(`Failed processing starting vehicle command. Unexpected ${res && res.status} status code.`);
+  }
+  return res;
+};
+
+const toJson = (res) => res.json();
+
+const messageAnythingElse = 'Is there anything else I can help with?';
+
+const launchRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
   },
@@ -20,33 +32,23 @@ const LaunchRequestHandler = {
   },
 };
 
-const CheckStatus = (res, expectedStatusCode) => {
-  if (res.status !== expectedStatusCode) {
-    throw new Error(`Failed processing starting vehicle command. Unexpected ${res && res.status} status code.`);
-  }
-  return res;
-};
-
-const ToJson = (res) => res.json();
-const messageAnythingElse = 'Is there anything else I can help with?';
-
-const StartVehicleIntentHandler = {
+const startVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'StartVehicleIntent';
   },
   handle(handlerInput) {
     return fetch('https://postman-echo.com/get?msg=Hello+world!')
-      .then((res) => CheckStatus(res, 200))
-      .then(ToJson)
-      .then((json) => `starting vehicle got 200 and says the message ${json.args.msg}`)
-      .then((output) => handlerInput.responseBuilder.speak(output))
-      .then((response) => response.reprompt(messageAnythingElse).getResponse())
-      .catch((err) => handlerInput.responseBuilder.speak(`Error ${err}`).getResponse());
+      .then(checkStatus)
+      .then(toJson)
+      .then(json => `starting vehicle got 200 and says the message ${json.args.msg}`)
+      .then(output => handlerInput.responseBuilder.speak(output))
+      .then(response => response.reprompt(messageAnythingElse).getResponse())
+      .catch(err => handlerInput.responseBuilder.speak(`Error ${err}`).getResponse());
   },
 };
 
-const LockVehicleIntentHandler = {
+const lockVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'LockVehicleIntent';
@@ -60,7 +62,7 @@ const LockVehicleIntentHandler = {
   },
 };
 
-const UnlockVehicleIntentHandler = {
+const unlockVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'UnlockVehicleIntent';
@@ -74,7 +76,7 @@ const UnlockVehicleIntentHandler = {
   },
 };
 
-const ChargeVehicleIntentHandler = {
+const chargeVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ChargeVehicleIntent';
@@ -88,7 +90,7 @@ const ChargeVehicleIntentHandler = {
   },
 };
 
-const WhereVehicleIntentHandler = {
+const whereVehicleIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WhereVehicleIntent';
@@ -102,7 +104,7 @@ const WhereVehicleIntentHandler = {
   },
 };
 
-const CheckFuelIntentHandler = {
+const checkFuelIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CheckFuelIntent';
@@ -116,7 +118,7 @@ const CheckFuelIntentHandler = {
   },
 };
 
-const CheckPlugIntentHandler = {
+const checkPlugIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'CheckPlugIntent';
@@ -130,7 +132,7 @@ const CheckPlugIntentHandler = {
   },
 };
 
-const WhenChargingIntentHandler = {
+const whenChargingIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'WhenChargingIntent';
@@ -144,7 +146,7 @@ const WhenChargingIntentHandler = {
   },
 };
 
-const GoodNightIntentHandler = {
+const goodNightIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'GoodNightIntent';
@@ -158,7 +160,7 @@ const GoodNightIntentHandler = {
   },
 };
 
-const HelpIntentHandler = {
+const helpIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
@@ -176,7 +178,7 @@ const HelpIntentHandler = {
   },
 };
 
-const CancelAndStopIntentHandler = {
+const cancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && (Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.CancelIntent'
@@ -190,7 +192,7 @@ const CancelAndStopIntentHandler = {
   },
 };
 
-const SessionEndedRequestHandler = {
+const sessionEndedRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'SessionEndedRequest';
   },
@@ -204,7 +206,7 @@ const SessionEndedRequestHandler = {
 // It will simply repeat the intent the user said. You can create custom handlers
 // for your intents by defining them above, then also adding them to the request
 // handler chain below.
-const IntentReflectorHandler = {
+const intentReflectorHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest';
   },
@@ -222,7 +224,7 @@ const IntentReflectorHandler = {
 // Generic error handling to capture any syntax or routing errors. If you receive an error
 // stating the request handler chain is not found, you have not implemented a handler for
 // the intent being invoked or included it in the skill builder below.
-const ErrorHandler = {
+const errorHandler = {
   canHandle() {
     return true;
   },
@@ -243,30 +245,30 @@ const ErrorHandler = {
 // defined are included below. The order matters - they're processed top to bottom.
 exports.handler = Alexa.SkillBuilders.custom()
   .addRequestHandlers(
-    LaunchRequestHandler,
+    launchRequestHandler,
 
     // Vehicle state changes
-    StartVehicleIntentHandler,
-    LockVehicleIntentHandler,
-    UnlockVehicleIntentHandler,
-    ChargeVehicleIntentHandler,
+    startVehicleIntentHandler,
+    lockVehicleIntentHandler,
+    unlockVehicleIntentHandler,
+    chargeVehicleIntentHandler,
 
     // Vehicle information
-    WhereVehicleIntentHandler,
-    CheckFuelIntentHandler,
-    CheckPlugIntentHandler,
-    WhenChargingIntentHandler, //
-    GoodNightIntentHandler,
+    whereVehicleIntentHandler,
+    checkFuelIntentHandler,
+    checkPlugIntentHandler,
+    whenChargingIntentHandler,
+    goodNightIntentHandler,
 
-    HelpIntentHandler,
-    CancelAndStopIntentHandler,
-    SessionEndedRequestHandler,
+    helpIntentHandler,
+    cancelAndStopIntentHandler,
+    sessionEndedRequestHandler,
 
     // NOTE: make sure IntentReflectorHandler is last so it doesn't override your
     // custom intent handlers!
-    IntentReflectorHandler,
+    intentReflectorHandler,
   )
   .addErrorHandlers(
-    ErrorHandler,
+    errorHandler,
   )
   .lambda();
