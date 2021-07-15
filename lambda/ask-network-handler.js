@@ -3,7 +3,7 @@
 
 const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
-const { domain } = require('./settings');
+const { domain, userid } = require('./settings');
 
 // Converts a fetched response object into a JSON object.
 const toJson = (res) => res.json();
@@ -13,7 +13,7 @@ const toJson = (res) => res.json();
 const dashes = (PascalCased) => PascalCased.replace(/(?!^)([A-Z])/g, '-$1').toLowerCase();
 
 // Creates a url for the desired intent.
-const url = (intent) => `${domain}/my-ford/${dashes(intent)}`;
+const url = (intent) => `${domain}/my-ford/${dashes(intent)}?user=${userid}`;
 
 const message = {
   anythingElse: 'Is there anything else I can help with?',

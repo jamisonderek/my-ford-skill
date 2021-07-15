@@ -21,6 +21,10 @@ Update the [.lambda\settings.js](.\lambda\settings.js) file to have your domain 
 exports.domain = 'https://f00d0bad0042.ngrok.io';
 ```
 
+## Updating your userid
+Update the [.lambda\settings.js](.\lambda\settings.js) file to have your userid for the my-ford service.  You can generate a unique guid
+using any online or local tool.
+
 ## Updating for your Alexa instance
 To start with, you should follow the steps for [ask-cli](https://github.com/alexa/ask-cli#getting-started).
 - choose NodeJS
