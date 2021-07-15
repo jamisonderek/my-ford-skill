@@ -1,11 +1,9 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable arrow-parens */
 
-// TODO: REPLACE THIS WITH YOUR DOMAIN.
-const domain = 'https://api.jamisoncreations.com';
-
 const Alexa = require('ask-sdk-core');
 const fetch = require('node-fetch');
+const { domain } = require('./settings');
 
 // Converts a fetched response object into a JSON object.
 const toJson = (res) => res.json();
