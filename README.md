@@ -2,7 +2,7 @@
 
 ## Introduction
 This package is an **Alexa skill** that forward all vehicle requests to the my-ford service for processing.  
-Please see the [my-ford repo](https://www.github.com/jamisonderek/my-ford) for additional directions about 
+Please see the [my-ford-service repo](https://www.github.com/jamisonderek/my-ford-service) for additional directions about 
 running the my-ford service.
 
 
