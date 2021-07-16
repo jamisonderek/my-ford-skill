@@ -1,13 +1,12 @@
 # My-Ford-Skill
 
 ## Introduction
-This package is an **Alexa skill** that forward all vehicle requests to the my-ford service for processing.  
-Please see the [my-ford-service repo](https://www.github.com/jamisonderek/my-ford-service) for additional directions about 
+This package is an **Alexa skill** that forwards all vehicle requests to the my-ford service for processing.  Please see the [my-ford-service repo](https://www.github.com/jamisonderek/my-ford-service) for additional directions about 
 running the my-ford service.
 
 
 ## Updating your domain
-If you are running locally you can use [ngrok](https://dashboard.ngrok.com/get-started/setup) to expose your localhost
+If you are running my-ford-service locally you can use [ngrok](https://dashboard.ngrok.com/get-started/setup) to expose your localhost
 address on the internet.  Install ngrok then run:
 ```
 ngrok http 80
@@ -23,7 +22,10 @@ exports.domain = 'https://f00d0bad0042.ngrok.io';
 
 ## Updating your userid
 Update the [.lambda\settings.js](.\lambda\settings.js) file to have your userid for the my-ford service.  You can generate a unique guid
-using any online or local tool.
+using any online or local tool, such as [guidgen.com](https://www.guidgen.com/).
+```
+exports.userid = 'c855c334-abae-425e-a98d-7f25b8ad7519';
+```
 
 ## Updating for your Alexa instance
 To start with, you should follow the steps for [ask-cli](https://github.com/alexa/ask-cli#getting-started).
@@ -32,9 +34,9 @@ To start with, you should follow the steps for [ask-cli](https://github.com/alex
 - choose Hello World (first option)
 - type a skill name (like "my-ford-skill-demo")
 - press enter to accept the default folder name.
-After deploying the skill, you should have a skill-package\skill.json file with a uri.
+Follow the remaining steps in the ask-cli to deploy the new skill you created.  After deploying the skill, the my-ford-skill-demo project you created should have a skill-package\skill.json file with a uri.
 
-You can then edit this project's [.\skill-package\skill.json](.\skill-package\skill.json) to refer to your skill uri.
+You can then edit **this** project's [.\skill-package\skill.json](.\skill-package\skill.json) to refer to your skill uri.
 ```
 "uri": "arn:aws:lambda:us-east-1:088220592420:function:ask-skill-sample-nodejs-he-default-default-1624503279895"
 ```
