@@ -11,34 +11,28 @@ address on the internet.  Install ngrok then run:
 ```
 ngrok http 8000
 ```
-You will see a Forwarding https address like "https://f00d0bad0042.ngrok.io" which is your domain.<p>
+Ngrok will display a bunch of information. You will see a Forwarding https address like "https://f00d0bad0042.ngrok.io" which is your domain.<p>
 **NOTE:** This domain will change everytime you reset ngrok if you are on the free plan, which means
 you will need to update and redeploy this skill.
 
-Update the [.lambda\settings.js](.\lambda\settings.js) file to have your domain for the my-ford service.  
+Update the [.lambda\settings.js](./lambda/settings.js) file to have your domain for the my-ford service.  
 ```
 exports.domain = 'https://f00d0bad0042.ngrok.io';
 ```
 
-## Updating your userid
-Update the [.lambda\settings.js](.\lambda\settings.js) file to have your userid for the my-ford service.  You can generate a unique guid
-using any online or local tool, such as [guidgen.com](https://www.guidgen.com/).
-```
-exports.userid = 'c855c334-abae-425e-a98d-7f25b8ad7519';
-```
-
 ## Updating for your Alexa instance
-To start with, you should follow the steps for [ask-cli](https://github.com/alexa/ask-cli#getting-started).
+To start with, you should follow the steps for [ask-cli](https://github.com/alexa/ask-cli#getting-started).  When you get to step 3, "Create new skill project" where you run **ask new** please use the following values:
 - choose NodeJS
 - choose AWS Lambda
 - choose Hello World (first option)
 - type a skill name (like "my-ford-skill-demo")
 - press enter to accept the default folder name.
-Follow the remaining steps in the ask-cli to deploy the new skill you created.  After deploying the skill, the my-ford-skill-demo project you created should have a skill-package\skill.json file with a uri.
 
-You can then edit **this** project's [.\skill-package\skill.json](.\skill-package\skill.json) to refer to your skill uri.
+Follow the remaining steps in the ask-cli tutorial to deploy the new skill you created (in particular the **ask deploy** step).  After deploying the skill, the new my-ford-skill-demo project you created should have a file called skill-package\skill.json with a uri value.
+
+You can then edit **this** project's [.\skill-package\skill.json](./skill-package/skill.json) to use your skill uri.
 ```
-"uri": "arn:aws:lambda:us-east-1:088220592420:function:ask-skill-sample-nodejs-he-default-default-1624503279895"
+"uri": "arn:aws:lambda:us-east-1:088220592420:function:my-ford-skill-demo-default-default-1624503279895"
 ```
 
 Now you should be ready to [deploy an update](#deploying-updates).
@@ -55,4 +49,4 @@ ask deploy
 - Say "Alexa, open My Ford."
 - Then say "Unlock the doors."
 - Or you can say "Alexa, Unlock the doors using My Ford."
-- To see other supported commands see [.\skill-package\interactionModels\custom\en-US.json](.\skill-package\interactionModels\custom\en-US.json)
+- To see other supported commands see [.\skill-package\interactionModels\custom\en-US.json](./skill-package/interactionModels/custom/en-US.json)
