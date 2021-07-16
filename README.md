@@ -9,7 +9,7 @@ running the my-ford service.
 If you are running my-ford-service locally you can use [ngrok](https://dashboard.ngrok.com/get-started/setup) to expose your localhost
 address on the internet.  Install ngrok then run:
 ```
-ngrok http 80
+ngrok http 8000
 ```
 You will see a Forwarding https address like "https://f00d0bad0042.ngrok.io" which is your domain.<p>
 **NOTE:** This domain will change everytime you reset ngrok if you are on the free plan, which means
