@@ -28,29 +28,9 @@ To start with, you should follow the steps for [ask-cli](https://github.com/alex
 - type a skill name (like "my-ford-skill-demo")
 - press enter to accept the default folder name.
 
-Follow the remaining steps in the ask-cli tutorial to deploy the new skill you created (in particular the **ask deploy** step).  After deploying the skill, the new my-ford-skill-demo project you created should have a file called skill-package\skill.json with a uri value.
+Follow the remaining steps in the ask-cli tutorial to confirm you can deploy the new skill you created.
 
-You can then edit **this** project's [.\skill-package\skill.json](./skill-package/skill.json)
-```
-    "apis": {
-      "custom": {
-        "endpoint": {
-          "uri": "arn:aws:lambda:us-east-1:088220592420:function:ask-skill-sample-nodejs-he-default-default-1624503279895"
-        }
-      }
-    },
-```
-to be:
-```
-    "apis": {
-      "custom": {
-      }
-    },
-```
-
-
-Now you should be ready to [deploy an update](#deploying-updates).
-
+Now you should be ready to [deploy an update](#deploying-updates) with the my-ford-skill.
 
 ## Deploying updates
 From the root of the project run the following command:
